@@ -1,0 +1,206 @@
+<div class="home">
+  <!-- Header -->
+  <div class="header">
+    <div class="header__profile">
+      <img [src]="user.avatar" alt="profile" class="header__avatar" />
+      <div>
+        <p class="header__welcome">Welcome back</p>
+        <p class="header__username">{{ user.name }}</p>
+      </div>
+    </div>
+    <button class="icon-btn">
+      <img
+        src="assets/svg/short_text_24px_outlined.svg"
+        alt="menu"
+        class="w-6 h-6"
+      />
+    </button>
+  </div>
+
+  <!-- Search -->
+  <div class="search-wrap">
+    <div class="search-box">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="search-icon"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z"
+        />
+      </svg>
+
+      <input
+        type="text"
+        placeholder="Search"
+        [(ngModel)]="searchQuery"
+        (input)="onSearchChange(searchQuery)"
+        class="search-input"
+      />
+
+      <button (click)="toggleFilter()" class="filter-button">
+        <img src="assets/svg/filter.svg" alt="menu" class="w-6 h-6" />
+      </button>
+    </div>
+
+    <div *ngIf="filterOpen" class="filter-container">
+      <label class="filter-label">Genre</label>
+      <select
+        [(ngModel)]="selectedGenre"
+        class="filter-select"
+        (change)="applyFilter()"
+      >
+        <option [ngValue]="null">All Genres</option>
+        <option *ngFor="let g of genres" [ngValue]="g.id">{{ g.name }}</option>
+      </select>
+
+      <label class="filter-label">Year</label>
+      <input
+        type="number"
+        [(ngModel)]="selectedYear"
+        placeholder="Year"
+        class="filter-input"
+        (input)="applyFilter()"
+      />
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section__head">
+      <h2 class="section__title">Popular</h2>
+      <button
+        class="section__scroll-btn lg:hidden"
+        (click)="scrollRight(popularContainer)"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="section__arrow"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <div #popularContainer class="carousel scrollbar-hide">
+      <div
+        *ngFor="let movie of popular; trackBy: trackById"
+        class="card"
+        (click)="goToDetails(movie.id)"
+      >
+        <img
+          [src]="getPoster(movie.poster_path)"
+          alt="{{ movie.title }}"
+          class="card__img"
+        />
+        <p class="card__title">{{ movie.title }}</p>
+
+        <div class="card__rating">
+          <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              [ngClass]="
+                i < getStars(movie.vote_average)
+                  ? 'text-yellow-400'
+                  : 'text-gray-600'
+              "
+              class="w-4 h-4"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.177c.969 0 1.371
+                       1.24.588 1.81l-3.382 2.46a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755
+                       1.688-1.54 1.118l-3.382-2.46a1 1 0 00-1.176 0l-3.382 2.46c-.785.57-1.84-.196-1.54-1.118l1.287-3.966a1
+                       1 0 00-.364-1.118L2.049 9.394c-.783-.57-.38-1.81.588-1.81h4.177a1
+                       1 0 00.95-.69l1.286-3.967z"
+              />
+            </svg>
+          </ng-container>
+          <span class="card__rating-value">{{
+            movie.vote_average | number : "1.1-1"
+          }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section__head">
+      <h2 class="section__title">Recommended</h2>
+      <button
+        class="section__scroll-btn lg:hidden"
+        (click)="scrollRight(recommendedContainer)"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="section__arrow"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <div #recommendedContainer class="carousel scrollbar-hide">
+      <div
+        *ngFor="let movie of recommended; trackBy: trackById"
+        class="card"
+        (click)="goToDetails(movie.id)"
+      >
+        <img
+          [src]="getPoster(movie.poster_path)"
+          alt="{{ movie.title }}"
+          class="card__img"
+        />
+        <p class="card__title">{{ movie.title }}</p>
+
+        <div class="card__rating">
+          <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              [ngClass]="
+                i < getStars(movie.vote_average)
+                  ? 'text-yellow-400'
+                  : 'text-gray-600'
+              "
+              class="w-4 h-4"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.177c.969 0 1.371
+                       1.24.588 1.81l-3.382 2.46a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755
+                       1.688-1.54 1.118l-3.382-2.46a1 1 0 00-1.176 0l-3.382 2.46c-.785.57-1.84-.196-1.54-1.118l1.287-3.966a1
+                       1 0 00-.364-1.118L2.049 9.394c-.783-.57-.38-1.81.588-1.81h4.177a1
+                       1 0 00.95-.69l1.286-3.967z"
+              />
+            </svg>
+          </ng-container>
+          <span class="card__rating-value">{{
+            movie.vote_average | number : "1.1-1"
+          }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

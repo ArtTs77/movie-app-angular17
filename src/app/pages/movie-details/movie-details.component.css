@@ -1,0 +1,188 @@
+.details {
+  @apply mx-auto lg:max-w-full text-white;
+  max-width: 430px;
+  background: #1f1f29;
+}
+
+.poster-wrap {
+  @apply relative;
+}
+.poster-img {
+  @apply w-full;
+  height: 482px;
+  object-fit: fill;
+}
+
+.play-btn {
+  @apply absolute flex items-center justify-center rounded-full border-2 transition-all duration-300;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  background: #ff0000;
+  border-color: transparent;
+}
+.play-btn:hover {
+  border-color: #a855f7;
+}
+
+.play-icon {
+  width: 24px;
+  height: 24px;
+  transition: stroke 0.2s ease-in-out;
+  stroke: black;
+  stroke-width: 2;
+  fill: black;
+}
+.play-btn:hover .play-icon {
+  stroke: #a855f7;
+}
+
+.poster-gradient {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 448px,
+    #1f1f29 448px,
+    #1f1f29 100%
+  );
+}
+
+.nav-btn {
+  @apply absolute z-10;
+  padding: 8px;
+}
+.nav-btn--left {
+  top: 23px;
+  left: 17px;
+}
+.nav-btn--right {
+  top: 23px;
+  right: 23px;
+}
+
+.nav-icon {
+  display: block;
+}
+.nav-icon--back {
+  width: 19px;
+  height: 15px;
+}
+.nav-icon--share {
+  width: 24px;
+  height: 24px;
+}
+
+.runtime-badge {
+  @apply absolute font-semibold z-10 text-white;
+  top: 420px;
+  right: 13px;
+  font-size: 16px;
+}
+
+.details-body {
+  @apply relative z-10;
+  padding: 1rem;
+}
+
+.badges-row {
+  @apply flex items-center justify-between mb-2;
+}
+.badges-left {
+  @apply flex items-center gap-1;
+}
+
+.badge {
+  @apply inline-flex items-center justify-center rounded-[10px] text-white;
+  height: 35px;
+  background: #312f35;
+  font-size: 16px;
+}
+.badge--age {
+  font-weight: 700;
+  padding: 0 8px;
+  width: 51px;
+}
+.badge--genre {
+  font-weight: 600;
+  padding: 0 12px;
+  width: 95px;
+}
+
+.rating-pill {
+  @apply flex items-center justify-center rounded-[10px];
+  height: 35px;
+  width: 73px;
+  background: #312f35;
+  padding: 0 12px;
+}
+.star-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+}
+.rating-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.title {
+  color: #fff;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 25px;
+}
+
+.overview {
+  color: #fff;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 18px;
+}
+.overview__toggle {
+  color: #ff0000ba;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.section-title {
+  color: #fff;
+  font-weight: 600;
+  font-size: 25px;
+  margin-bottom: 0.5rem;
+}
+.actors {
+  @apply flex gap-2 overflow-x-auto;
+}
+.actor-card {
+  flex: 0 0 auto;
+}
+.actor-photo {
+  width: 108px;
+  height: 108px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+.actor-name {
+  font-size: 12px;
+  text-align: center;
+  margin-top: 0.25rem;
+}
+
+.imdb-btn {
+  display: block;
+  text-align: center;
+  color: #fff;
+  font-weight: 600;
+  font-size: 18px;
+  background: #f5c518;
+  border-radius: 6px;
+  padding: 0.5rem 0;
+  margin-top: 1.5rem;
+}

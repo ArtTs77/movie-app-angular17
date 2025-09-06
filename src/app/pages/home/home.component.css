@@ -1,0 +1,121 @@
+.home {
+  @apply mx-auto lg:max-w-full relative;
+  max-width: 430px;
+  padding-top: 29px;
+}
+
+.header {
+  @apply flex items-center justify-between mb-6;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.header__profile {
+  @apply flex items-center gap-3;
+}
+.header__avatar {
+  @apply w-10 h-10 rounded-full object-cover;
+}
+.header__welcome {
+  @apply text-[12px];
+  color: #b9c1d9;
+}
+.header__username {
+  @apply text-[16px] font-semibold text-white;
+}
+.icon-btn {
+  @apply w-6 h-6 flex items-center justify-center;
+}
+
+.search-wrap {
+  @apply flex justify-center mb-6 relative;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.search-box {
+  @apply flex items-center h-12 w-full;
+  background: #131316;
+  border-radius: 10px;
+  padding: 0 12px;
+  max-width: 345px;
+}
+
+.search-icon {
+  @apply w-5 h-5;
+  color: #575866;
+}
+.search-input {
+  @apply bg-transparent outline-none w-full text-white;
+  margin-left: 0.5rem;
+}
+.search-input::placeholder {
+  color: #575866;
+}
+
+.filter-button {
+  @apply w-6 h-6 flex items-center justify-center;
+}
+.filter-container {
+  @apply absolute right-0 mt-2 rounded-lg shadow-lg;
+  width: 12rem;
+  background: #1f1f29;
+  padding: 1rem;
+}
+.filter-label {
+  @apply block text-sm text-gray-400 mb-1;
+}
+.filter-select {
+  @apply w-full text-white rounded px-2 py-1 mb-2;
+  background: #131316;
+}
+.filter-input {
+  @apply w-full text-white rounded px-2 py-1;
+  background: #131316;
+}
+
+.section {
+  @apply mb-6;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.section__head {
+  @apply flex items-center justify-between mb-3;
+}
+.section__title {
+  @apply text-white font-semibold text-[20px];
+}
+.section__scroll-btn {
+  @apply w-6 h-6 flex items-center justify-center;
+}
+.section__arrow {
+  @apply w-5 h-5 text-white;
+}
+
+.carousel {
+  @apply flex gap-4 overflow-x-auto;
+}
+.card {
+  @apply flex-none cursor-pointer;
+  width: 140px;
+}
+.card__img {
+  @apply rounded-lg w-full object-cover;
+  height: 210px;
+}
+.card__title {
+  @apply mt-2 text-sm text-white truncate;
+}
+.card__rating {
+  @apply flex items-center mt-1;
+}
+.card__rating-value {
+  @apply text-xs text-gray-400 ml-1;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

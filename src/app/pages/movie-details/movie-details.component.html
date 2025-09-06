@@ -1,0 +1,136 @@
+<div class="details">
+  <div class="poster-wrap">
+    <img
+      [src]="getPoster(movie?.poster_path)"
+      alt="{{ movie?.title }}"
+      class="poster-img"
+    />
+
+    <button aria-label="Play trailer" class="play-btn">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="black"
+        class="play-icon"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </button>
+
+    <div class="poster-gradient"></div>
+    <button (click)="goBack()" class="nav-btn nav-btn--left">
+      <img
+        src="assets/keyboard_backspace_24px.png"
+        alt="Back"
+        class="nav-icon nav-icon--back"
+      />
+    </button>
+
+    <button class="nav-btn nav-btn--right">
+      <img
+        src="assets/share_24px_outlined.png"
+        alt="Share"
+        class="nav-icon nav-icon--share"
+      />
+    </button>
+
+    <span class="runtime-badge">
+      {{ getRuntime(movie.runtime) }}
+    </span>
+  </div>
+
+  <div class="details-body">
+    <div class="badges-row">
+      <div class="badges-left">
+        <span class="badge badge--age"> +{{ movie?.adult ? 18 : "PG" }} </span>
+
+        <span class="badge badge--genre"> Action </span>
+
+        <div class="rating-pill">
+          <img src="assets/star_24px.png" alt="star" class="star-icon" />
+          <span class="rating-text">
+            {{ movie?.vote_average | number : "1.1-1" }}
+          </span>
+        </div>
+      </div>
+
+      <button (click)="toggleFavorite()">
+        <svg
+          *ngIf="!isFavorite"
+          xmlns="http://www.w3.org/2000/svg"
+          class="fav-icon fav-icon--outline"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5
+         4.5 0 116.364 6.364L12 21.364l-7.682-7.682a4.5
+         4.5 0 010-6.364z"
+          />
+        </svg>
+
+        <svg
+          *ngIf="isFavorite"
+          xmlns="http://www.w3.org/2000/svg"
+          class="fav-icon fav-icon--filled"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+          <path
+            d="M12 21.35l-1.45-1.32C5.4 15.36
+         2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0
+         3.41.81 4.5 2.09C13.09 3.81
+         14.76 3 16.5 3 19.58 3 22 5.42
+         22 8.5c0 3.78-3.4 6.86-8.55
+         11.54L12 21.35z"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <h1 class="title">{{ movie?.title }}</h1>
+    <p class="overview">
+      {{
+        showFullOverview ? movie?.overview : (movie?.overview | slice : 0 : 120)
+      }}
+      <span
+        *ngIf="movie?.overview?.length > 120"
+        (click)="toggleOverview()"
+        class="overview__toggle"
+      >
+        {{ showFullOverview ? " Show less" : " Show more" }}
+      </span>
+    </p>
+
+    <h2 class="section-title">Actors</h2>
+    <div class="actors">
+      <div
+        *ngFor="let actor of movie?.credits?.cast?.slice(0, 5)"
+        class="actor-card"
+      >
+        <img
+          [src]="getPoster(actor.profile_path)"
+          alt="{{ actor.name }}"
+          class="actor-photo"
+        />
+        <p class="actor-name">{{ actor.name }}</p>
+      </div>
+    </div>
+
+    <a
+      href="https://www.imdb.com/title/{{ movie?.imdb_id }}"
+      target="_blank"
+      class="imdb-btn"
+    >
+      Open IMDb
+    </a>
+  </div>
+</div>

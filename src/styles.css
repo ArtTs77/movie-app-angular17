@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/600.css";
+
+@font-face {
+  font-family: "SF Pro Text";
+  src: local("SF Pro Text Regular"), local("SF Pro Text");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SF Pro Text";
+  src: local("SF Pro Text Semibold"), local("SF Pro Text");
+  font-weight: 600;
+  font-style: normal;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background-color: #1f1f29;
+  font-family: "Inter", sans-serif;
+}
+
+.placeholder-search {
+  font-family: "SF Pro Text", Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #575866;
+}
